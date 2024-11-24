@@ -33,6 +33,11 @@ const Customers = lazy(() => import("./pages/admin/customers"));
 const Transaction = lazy(() => import("./pages/admin/transaction"));
 const Discount = lazy(() => import("./pages/admin/discount"));
 const ReStockAlert = lazy(() => import("./pages/admin/reStockAlert"));
+const AdminQueries = lazy(() => import("./pages/admin/adminQueries"));
+const QueryManagement = lazy(() => import("./pages/admin/management/querymanagement"));
+const AdminPickups = lazy(() => import("./pages/admin/adminPickups"));
+const  PickupManagement = lazy(() => import("./pages/admin/management/pickupManagement"));
+const AdminPendingReusable = lazy(() => import("./pages/admin/adminPendingReusable"));
 const Barcharts = lazy(() => import("./pages/admin/charts/barcharts"));
 const Piecharts = lazy(() => import("./pages/admin/charts/piecharts"));
 const Linecharts = lazy(() => import("./pages/admin/charts/linecharts"));
@@ -117,7 +122,10 @@ const App = () => {
             <Route path="/admin/transaction" element={<Transaction />} />
             <Route path="/admin/discount" element={<Discount />} />
             <Route path="/admin/alerts" element={<ReStockAlert/>} />
-
+            <Route path="/admin/queries" element={<AdminQueries/>} />
+            <Route path="/admin/pickups" element={<AdminPickups/>} />
+            <Route path="/admin/pending-reusable" element={<AdminPendingReusable/>} />
+            
             {/* Charts */}
             <Route path="/admin/chart/bar" element={<Barcharts />} />
             <Route path="/admin/chart/pie" element={<Piecharts />} />
@@ -131,7 +139,8 @@ const App = () => {
             <Route path="/admin/product/new" element={<NewProduct />} />
 
             <Route path="/admin/product/:id" element={<ProductManagement />} />
-
+            <Route path="/admin/queries/:id" element={<QueryManagement/>} />
+            <Route path="/admin/pickups/:id" element={<PickupManagement/>} />
             <Route
               path="/admin/transaction/:id"
               element={<TransactionManagement />}

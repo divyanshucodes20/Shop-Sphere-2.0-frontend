@@ -6,6 +6,7 @@ import {
   FaChartPie,
   FaGamepad,
   FaStopwatch,
+  FaTruckPickup,
 } from "react-icons/fa";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { IoIosPeople } from "react-icons/io";
@@ -16,8 +17,8 @@ import {
 } from "react-icons/ri";
 import { Link, Location, useLocation } from "react-router-dom";
 import { IconType } from "react-icons";
-import { MdDiscount } from "react-icons/md";
-import { TbAlertSquareFilled } from "react-icons/tb";
+import { MdDiscount, MdOutlinePendingActions } from "react-icons/md";
+import { TbAlertSquareFilled, TbBrandGoogleBigQuery } from "react-icons/tb";
 
 const AdminSidebar = () => {
   const location = useLocation();
@@ -114,6 +115,24 @@ const DivOne = ({ location }: { location: Location }) => (
         url="/admin/alerts"
         text="ReStock Alerts"
         Icon={TbAlertSquareFilled}
+        location={location}
+      />
+      <Li
+        url="/admin/queries"
+        text="Queries"
+        Icon={TbBrandGoogleBigQuery}
+        location={location}
+      />
+      <Li
+        url="/admin/pickups"
+        text="Pickups"
+        Icon={FaTruckPickup}
+        location={location}
+      />
+      <Li
+        url="/admin/pending-reusable"
+        text="Pending Reusable Products" 
+        Icon={MdOutlinePendingActions}
         location={location}
       />
     </ul>

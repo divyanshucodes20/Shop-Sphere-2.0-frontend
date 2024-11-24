@@ -25,6 +25,11 @@ const Querymanagement = () => {
       price: 0,
       description: "",
     };
+    const {pickupAddress,pickupCity,pickupPostalCode}=data?.query.pickupDetails || {
+      pickupAddress:"",
+      pickupCity:"",
+      pickupPostalCode:"",
+    }
 
   const [btnLoading, setBtnLoading] = useState<boolean>(false);
   const [priceUpdate, setPriceUpdate] = useState<number>(price);
@@ -33,6 +38,12 @@ const Querymanagement = () => {
   const [categoryUpdate, setCategoryUpdate] = useState<string>(category);
   const [descriptionUpdate, setDescriptionUpdate] =
     useState<string>(description);
+ 
+  const[pickupAddressUpdate,setPickupAddressUpdate] = useState<string>(pickupAddress);
+
+  const[pickupCityUpdate,setPickupCityUpdate] = useState<string>(pickupCity);
+
+  const[pickupPostalCodeUpdate,setPickupPostalCodeUpdate] = useState<string>(pickupPostalCode);
 
   const [updateQuery] = useUpdateUserQueryMutation();
   const [deleteQuery] = useDeleteQueryMutation();
@@ -53,6 +64,11 @@ const Querymanagement = () => {
         formData.set("stock", stockUpdate.toString());
 
       if (categoryUpdate) formData.set("category", categoryUpdate);
+
+
+      if(pickupAddressUpdate) formData.set("pickupAddress",pickupAddressUpdate);
+      if(pickupCityUpdate) formData.set("pickupCity",pickupCityUpdate);
+      if(pickupPostalCodeUpdate) formData.set("pickupPostalCode",pickupPostalCodeUpdate);
 
       if (photosFiles.file && photosFiles.file.length > 0) {
         photosFiles.file.forEach((file) => {
@@ -90,6 +106,9 @@ const Querymanagement = () => {
       setStockUpdate(data.query.productDetails.stock);
       setCategoryUpdate(data.query.productDetails.category);
       setDescriptionUpdate(data.query.productDetails.description);
+      setPickupAddressUpdate(data.query.pickupDetails.pickupAddress);
+      setPickupCityUpdate(data.query.pickupDetails.pickupCity);
+      setPickupPostalCodeUpdate(data.query.pickupDetails.pickupPostalCode);
     }
   }, [data]);
 
@@ -164,9 +183,34 @@ const Querymanagement = () => {
                     placeholder="eg. laptop, camera etc"
                     value={categoryUpdate}
                     onChange={(e) => setCategoryUpdate(e.target.value)}
+                  /> </div>
+                  <div>
+                  <label>Pickup Address</label>
+                  <input
+                    type="text"
+                    placeholder="Pickup Address"
+                    value={pickupAddressUpdate}
+                    onChange={(e) => setPickupAddressUpdate(e.target.value)}
                   />
-                </div>
-
+                  </div>
+                  <div>
+                  <label>Pickup City</label>
+                  <input
+                    type="text"
+                    placeholder="Pickup City"
+                    value={pickupCityUpdate}
+                    onChange={(e) => setPickupCityUpdate(e.target.value)}
+                  />
+                  </div>
+                  <div>
+                  <label>Pickup Postal Code</label>
+                  <input
+                    type="text"
+                    placeholder="Pickup Postal Code"
+                    value={pickupPostalCodeUpdate}
+                    onChange={(e) => setPickupPostalCodeUpdate(e.target.value)}
+                  />
+                  </div>
                 <div>
                   <label>Photos</label>
                   <input

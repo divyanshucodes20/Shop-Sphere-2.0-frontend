@@ -25,11 +25,11 @@ export const queryAPI = createApi({
          providesTags:["query"],
     }),
     getAdminQueries:builder.query<AllQeriesResponse,string>({
-        query:(id)=>`all?${id}`,
+        query:(id)=>`all?id=${id}`,
         providesTags:["query"],
     }),
     getAdminPickups:builder.query<AllQeriesResponse,string>({
-        query:(id)=>`pickups?${id}`,
+        query:(id)=>`pickups?id=${id}`,
         providesTags:["query"],
     }),
     updateQueryStatus:builder.mutation<MessageResponse,UpdateQueryStatusRequest>({
