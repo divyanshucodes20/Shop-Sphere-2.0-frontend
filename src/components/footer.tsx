@@ -1,9 +1,3 @@
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaTwitter,
-} from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -63,23 +57,6 @@ const Footer = () => {
                 <a href="#">Dress</a>
               </li>
             </ul>
-          </div>
-          <div className="footer-col">
-            <h4>Follow Us</h4>
-            <div className="social-links">
-              <a href="#">
-                <FaFacebookF />
-              </a>
-              <a href="#">
-                <FaTwitter />
-              </a>
-              <a href="#">
-                <FaInstagram />
-              </a>
-              <a href="#">
-                <FaLinkedinIn />
-              </a>
-            </div>
           </div>
         </div>
       </div>

@@ -20,6 +20,9 @@ const Shipping = lazy(() => import("./pages/shipping"));
 const Login = lazy(() => import("./pages/login"));
 const Orders = lazy(() => import("./pages/orders"));
 const OrderDetails = lazy(() => import("./pages/order-details"));
+const UserQueries = lazy(() => import("./pages/queries"));
+const NewQuery = lazy(() => import("./pages/newquery"));
+const Querymanagement = lazy(() => import("./pages/queryManagement"));
 const NotFound = lazy(() => import("./pages/not-found"));
 const Checkout = lazy(() => import("./pages/checkout"));
 
@@ -94,6 +97,9 @@ const App = () => {
             <Route path="/orders" element={<Orders />} />
             <Route path="/order/:id" element={<OrderDetails />} />
             <Route path="/pay" element={<Checkout />} />
+            <Route path="/user/queries" element={<UserQueries />} />
+            <Route path="/query/new" element={<NewQuery/>} />
+            <Route path="/query/:id" element={<Querymanagement/>} />
           </Route>
           {/* Admin Routes */}
           <Route

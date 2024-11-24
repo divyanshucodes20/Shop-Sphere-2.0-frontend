@@ -7,6 +7,7 @@ import {
   Order,
   Pie,
   Product,
+  Query,
   Review,
   ShippingInfo,
   Stats,
@@ -156,3 +157,28 @@ export type SingleDiscountResponse = {
   success: boolean;
   coupon: CouponType;
 };
+export type AllQeriesResponse = {
+  success: boolean;
+  queries: Query[];
+}
+export type QueryResponse = {
+  success: boolean;
+  query: Query;
+}
+export type UpdateQueryStatusRequest = {
+  id:string;
+  userId:string;
+}
+export type NewQueryRequest = {
+  userId:string;
+  formData:FormData;
+}
+export type deleteQueryRequest = {
+  id:string;
+  userId:string;
+} 
+export type UpdateUserQueryRequest={
+userId:string;
+id:string;
+formData:FormData;
+}
