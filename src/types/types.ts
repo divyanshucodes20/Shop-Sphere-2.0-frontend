@@ -157,3 +157,24 @@ export type Notifications = {
   productId: string;
   email: string;
 }
+export type Query={
+  userId:string;
+  productDetails:{
+    name:string;
+    category:string;
+    description:string;
+    price:number;
+    stock:number;
+    photos: {
+      url: string;
+      public_id: string;
+    }[];
+  },
+  queryStatus: "pending" | "approved" | "success";
+  pickupDetails: {
+    pickupAddress: string;
+    pickupCity: string;
+    pickupPostalCode: string;
+  };
+  _id: string;
+}

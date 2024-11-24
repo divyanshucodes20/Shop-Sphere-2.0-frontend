@@ -2,6 +2,7 @@ import { signOut } from "firebase/auth";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import {
+  FaRecycle,
   FaSearch,
   FaShoppingBag,
   FaUser
@@ -47,6 +48,9 @@ const Header = ({ user }: PropsType) => {
       <Link onClick={() => setIsOpen(false)} to={"/search"}>
         <FaSearch />
       </Link>
+      <Link onClick={() => setIsOpen(false)} to={"/reusable-search"}>
+        <FaRecycle/>
+      </Link>
       <Link onClick={() => setIsOpen(false)} to={"/cart"}>
         <FaShoppingBag />
       </Link>
@@ -69,6 +73,16 @@ const Header = ({ user }: PropsType) => {
                 <Link onClick={() => setIsOpen(false)} to="/orders">
                   Orders
                 </Link>
+                {user.role === "user" && (
+                  <Link onClick={() => setIsOpen(false)} to="/user/queries">
+                    Queries
+                  </Link>
+                )}
+                {user.role === "user" && (
+                  <Link onClick={() => setIsOpen(false)} to="/user/payments">
+                    Payments
+                  </Link>
+                )}
                 <button className="logout-btn" onClick={logoutHandler}>
                   Logout
                 </button>
