@@ -178,3 +178,19 @@ export type Query={
   };
   _id: string;
 }
+export type ReusableProduct={
+  userId:string;
+  productDetails:{
+    name:string;
+    category:string;
+    description:string;
+    price:number;
+    stock:number;
+    photos: {
+      url: string;
+      public_id: string;
+    }[];
+  },
+  commission:number;
+  totalPrice:number;
+}

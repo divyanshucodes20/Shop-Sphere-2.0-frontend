@@ -67,7 +67,7 @@ const AdminPendingReusable = () => {
           category:i.productDetails.category,
           price: i.productDetails.price,
           stock: i.productDetails.stock,
-          action: <Link to={`/admin/pending/${i._id}`}>Manage</Link>,
+          action: <Link to={`/admin/pending-reusable/${i._id}`}>Manage</Link>,
         }))
       );
   }, [data]);

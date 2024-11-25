@@ -8,10 +8,11 @@ import {
   Pie,
   Product,
   Query,
+  ReusableProduct,
   Review,
   ShippingInfo,
   Stats,
-  User,
+  User
 } from "./types";
 
 export type CustomError = {
@@ -181,4 +182,8 @@ export type UpdateUserQueryRequest={
 userId:string;
 id:string;
 formData:FormData;
+}
+export type AllReusableProductResponse={
+success:boolean;
+products:ReusableProduct[];
 }

@@ -38,6 +38,7 @@ const QueryManagement = lazy(() => import("./pages/admin/management/querymanagem
 const AdminPickups = lazy(() => import("./pages/admin/adminPickups"));
 const  PickupManagement = lazy(() => import("./pages/admin/management/pickupManagement"));
 const AdminPendingReusable = lazy(() => import("./pages/admin/adminPendingReusable"));
+const PendingReusableManagement = lazy(() => import("./pages/admin/management/pendingReusableManagement"));
 const Barcharts = lazy(() => import("./pages/admin/charts/barcharts"));
 const Piecharts = lazy(() => import("./pages/admin/charts/piecharts"));
 const Linecharts = lazy(() => import("./pages/admin/charts/linecharts"));
@@ -141,6 +142,7 @@ const App = () => {
             <Route path="/admin/product/:id" element={<ProductManagement />} />
             <Route path="/admin/queries/:id" element={<QueryManagement/>} />
             <Route path="/admin/pickups/:id" element={<PickupManagement/>} />
+            <Route path="/admin/pending-reusable/:id" element={<PendingReusableManagement/>} />
             <Route
               path="/admin/transaction/:id"
               element={<TransactionManagement />}

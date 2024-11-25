@@ -3,10 +3,10 @@ import { FormEvent, useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { RootState } from "../redux/store";
-import { useDeleteQueryMutation, useGetQueryByIdQuery, useUpdateUserQueryMutation } from "../redux/api/queryAPI";
-import { responseToast, transformImage } from "../utils/features";
 import { Skeleton } from "../components/loader";
+import { useDeleteUserQueryMutation, useGetQueryByIdQuery, useUpdateUserQueryMutation } from "../redux/api/queryAPI";
+import { RootState } from "../redux/store";
+import { responseToast, transformImage } from "../utils/features";
 
 const Querymanagement = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
@@ -46,7 +46,7 @@ const Querymanagement = () => {
   const[pickupPostalCodeUpdate,setPickupPostalCodeUpdate] = useState<string>(pickupPostalCode);
 
   const [updateQuery] = useUpdateUserQueryMutation();
-  const [deleteQuery] = useDeleteQueryMutation();
+  const [deleteQuery] = useDeleteUserQueryMutation();
 
   const photosFiles = useFileHandler("multiple", 10, 5);
 
