@@ -187,3 +187,34 @@ export type AllReusableProductResponse={
 success:boolean;
 products:ReusableProduct[];
 }
+export type ReusableCategoriesResponse = {
+  success: boolean;
+  categories: string[];
+};
+export type ReusableProductResponse = {
+  success: boolean;
+  product: ReusableProduct;
+};
+export type SearchReusableProductsResponse = AllReusableProductResponse & {
+  totalPage: number;
+};
+export type SearchReusableProductsRequest = {
+  price: number;
+  page: number;
+  category: string;
+  search: string;
+  sort: string;
+};
+export type NewReusableProductRequest = {
+  id: string;
+  formData: FormData;
+};
+export type UpdateReusableProductRequest = {
+  userId: string;
+  id: string;
+  formData: FormData;
+};
+export type DeleteReusableProductRequest = {
+  userId: string;
+  id: string;
+};
