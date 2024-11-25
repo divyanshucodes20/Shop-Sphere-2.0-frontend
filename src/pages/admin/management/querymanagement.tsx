@@ -97,6 +97,7 @@ const QueryManagement = () => {
                 <b>Price:</b> {productDetails.price}
                 <br />
                 <b>Stock:</b> {productDetails.stock}
+                <br />
                 <b>Description:</b> {productDetails.description}
               </p>
               <h5>User Info:</h5>

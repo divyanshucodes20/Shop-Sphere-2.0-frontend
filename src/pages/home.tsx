@@ -13,6 +13,7 @@ import { Slider } from "6pp";
 import { TbTruckDelivery } from "react-icons/tb";
 import { LuShieldCheck } from "react-icons/lu";
 import { RootState, server } from "../redux/store";
+import { useGetLatestReusableProductsQuery } from "../redux/api/reusableAPI";
 
 const clients = [
   {
@@ -137,6 +138,11 @@ const Home = () => {
 
   const {user}=useSelector((state:RootState)=>state.userReducer)
 
+  const {
+    data:reusableData,
+    isError:reusableIsError,
+    isLoading:reusableIsLoading
+  }=useGetLatestReusableProductsQuery("")
 
   const dispatch = useDispatch();
 
@@ -188,6 +194,8 @@ const Home = () => {
 
   if (isError) toast.error("Cannot Fetch the Products");
 
+  if(reusableIsError) toast.error("Cannot Fetch the Reusable Products");
+
   const coverMessage =
     "Fashion isn't just clothes; it's a vibrant language. Silhouettes and textures speak volumes, a conversation starter with every bold print. It's a way to tell our story, a confidence booster, or a playful exploration. From elegance to rebellion, fashion lets us navigate the world in style.".split(
       " "
@@ -223,7 +231,6 @@ const Home = () => {
             More
           </Link>
         </h1>
-
         <main>
           {isLoading ? (
             <>
@@ -252,6 +259,47 @@ const Home = () => {
                       stock: i.stock,
                       quantity: 1, // Default quantity for now
                       photo: i.photos[0]?.url || "",
+                    }
+                  );
+                }}
+              />
+            ))
+          )}
+        </main>
+        <h1>
+          Latest Reusable Products
+          <Link to="/search-reusable" className="findmore">
+            More
+          </Link>
+        </h1>
+        <main>
+          {reusableIsLoading ? (
+            <>
+              {Array.from({ length: 6 }, (_, i) => (
+                <div key={i} style={{ height: "25rem" }}>
+                  <Skeleton width="18.75rem" length={1} height="20rem" />
+                  <Skeleton width="18.75rem" length={2} height="1.95rem" />
+                </div>
+              ))}
+            </>
+          ) : (
+            reusableData?.products.map((i) => (
+              <ProductCard
+                key={i._id}
+                productId={i._id}
+                name={i.productDetails.name||""}
+                price={i.totalPrice||0}
+                stock={i.productDetails.stock||0}
+                photos={i.productDetails.photos||[]}
+                handler={async () => {
+                  await addToCartHandler(
+                    {
+                      productId: i._id,
+                      name: i.productDetails.name,
+                      price: i.totalPrice,
+                      stock: i.productDetails.stock,
+                      quantity: 1,
+                      photo: i.productDetails.photos[0]?.url || "",
                     }
                   );
                 }}

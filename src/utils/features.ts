@@ -55,6 +55,13 @@ export const getLastMonths = () => {
 };
 
 export const transformImage = (url: string, width = 200) => {
-  const newUrl = url.replace("upload/", `upload/dpr_auto/w_${width}/`);
-  return newUrl;
+  if (!url || typeof url !== "string") {
+    console.error("Invalid URL passed to transformImage:", url);
+    return url; // Return the original or a placeholder image
+  }
+  if (!url.includes("upload/")) {
+    console.warn("URL does not contain 'upload/' part:", url);
+    return url; // Return the original or a placeholder image
+  }
+  return url.replace("upload/", `upload/dpr_auto/w_${width}/`);
 };
