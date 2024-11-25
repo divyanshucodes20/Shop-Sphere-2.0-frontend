@@ -7,6 +7,7 @@ import { orderApi } from "./api/orderAPI";
 import { dashboardApi } from "./api/dashboardAPI";
 import { notificationAPI } from "./api/notificationAPI";
 import { queryAPI } from "./api/queryAPI";
+import { reusableAPI } from "./api/reusableAPI";
 
 export const server = import.meta.env.VITE_SERVER;
 
@@ -18,6 +19,7 @@ export const store = configureStore({
     [dashboardApi.reducerPath]: dashboardApi.reducer,
     [notificationAPI.reducerPath]: notificationAPI.reducer,
     [queryAPI.reducerPath]:queryAPI.reducer,
+    [reusableAPI.reducerPath]:reusableAPI.reducer,
     [userReducer.name]: userReducer.reducer,
     [cartReducer.name]: cartReducer.reducer,
   },
@@ -29,6 +31,7 @@ export const store = configureStore({
     dashboardApi.middleware,
     notificationAPI.middleware,
     queryAPI.middleware,
+    reusableAPI.middleware,
   ],
 });
 
