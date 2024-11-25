@@ -51,6 +51,8 @@ const PendingReusableManagement = () => {
   const [commission, setCommission] = useState<number>(0);
 
   const deleteHandler = async () => {
+    const result=window.confirm("Are you sure you want to delete this product?");
+    if(!result) return;
     const res = await deleteReusableProduct({
       userId: user?._id!,
       id: _id!,
@@ -59,25 +61,27 @@ const PendingReusableManagement = () => {
   };
 
   const createReusableHandler = async () => {
-    if (commission <0) {
-      alert("Commission is required and must be greater than or equal 0.");
+    if (commission < 0) {
+      alert("Commission must be greater than or equal to 0.");
       return;
     }
-    if(commission==0){
-    const res=window.confirm("Commission is 0 are you sure you want to proceed?");
-    if(!res){
-      return;
-    } 
+    if (commission === 0) {
+      const res = window.confirm(
+        "Commission is 0. Are you sure you want to proceed?"
+      );
+      if (!res) return;
     }
-
+  
     const formData = new FormData();
-  formData.append("userId", userId);
-  formData.append("commission", commission.toString());
-  formData.append("productDetails", JSON.stringify(productDetails));
-
-    const res = await createReusableProduct({ formData,id: user?._id! });
+    formData.append("userId", userId);
+    formData.append("commission", commission.toString());
+    formData.append("productDetails", JSON.stringify(productDetails));
+    formData.append("queryId", _id!);
+  
+    const res = await createReusableProduct({ formData, id: user?._id! });
     responseToast(res, navigate, "/admin/reusable-products");
   };
+  
 
   if (isError) return <Navigate to={"/404"} />;
 
@@ -95,10 +99,11 @@ const PendingReusableManagement = () => {
               }}
             >
               <h2>Product Photos</h2>
-                {productDetails &&
-                productDetails.photos.map((photo: { url: string }, index: number) => (
-                  <img key={index} src={transformImage(photo.url)} alt="product" />
-                ))}
+              {productDetails &&
+              productDetails.photos.map((photo: { url: string }, index: number) => (
+             <img key={index} src={transformImage(photo.url)} alt="product" />
+             ))}
+
             </section>
 
             <article className="shipping-info-card">

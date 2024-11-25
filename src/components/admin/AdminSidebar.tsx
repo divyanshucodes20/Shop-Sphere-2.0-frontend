@@ -5,6 +5,7 @@ import {
   FaChartLine,
   FaChartPie,
   FaGamepad,
+  FaRecycle,
   FaStopwatch,
   FaTruckPickup,
 } from "react-icons/fa";
@@ -133,6 +134,12 @@ const DivOne = ({ location }: { location: Location }) => (
         url="/admin/pending-reusable"
         text="Pending Reusable Products" 
         Icon={MdOutlinePendingActions}
+        location={location}
+      />
+      <Li
+        url="/admin/reusable"
+        text="Reusable Products" 
+        Icon={FaRecycle}
         location={location}
       />
     </ul>
