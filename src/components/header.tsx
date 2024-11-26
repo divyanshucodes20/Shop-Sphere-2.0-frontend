@@ -79,6 +79,11 @@ const Header = ({ user }: PropsType) => {
                   </Link>
                 )}
                 {user.role === "user" && (
+                  <Link onClick={() => setIsOpen(false)} to="/user/products">
+                    Products
+                  </Link>
+                )}
+                {user.role === "user" && (
                   <Link onClick={() => setIsOpen(false)} to="/user/payments">
                     Payments
                   </Link>

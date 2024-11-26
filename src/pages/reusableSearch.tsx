@@ -1,13 +1,13 @@
 import { useState } from "react";
-import ProductCard from "../components/product-card";
-import { CustomError } from "../types/api-types";
 import toast from "react-hot-toast";
-import { Skeleton } from "../components/loader";
-import { CartItem } from "../types/types";
-import { addToCart } from "../redux/reducer/cartReducer";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+import { Skeleton } from "../components/loader";
+import ReusableProductCard from "../components/reusable-product-card";
 import { useGetAllReusableCategoriesQuery, useSearchReusableProductsQuery } from "../redux/api/reusableAPI";
+import { addToCart } from "../redux/reducer/cartReducer";
+import { CustomError } from "../types/api-types";
+import { CartItem } from "../types/types";
 
 const ReusableSearch = () => {
   const searchQuery = useSearchParams()[0];
@@ -111,7 +111,7 @@ const ReusableSearch = () => {
         </div>
       </aside>
       <main>
-        <h1>Products</h1>
+        <h1>Resuable Products</h1>
         <input
           type="text"
           placeholder="Search by name..."
@@ -124,7 +124,7 @@ const ReusableSearch = () => {
         ) : (
           <div className="search-product-list">
             {searchedData?.products.map((i) => (
-  <ProductCard
+  <ReusableProductCard
     key={i._id}
     productId={i._id}
     name={i.productDetails.name}

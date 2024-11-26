@@ -14,6 +14,7 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { LuShieldCheck } from "react-icons/lu";
 import { RootState, server } from "../redux/store";
 import { useGetLatestReusableProductsQuery } from "../redux/api/reusableAPI";
+import ReusableProductCard from "../components/reusable-product-card";
 
 const clients = [
   {
@@ -284,7 +285,7 @@ const Home = () => {
             </>
           ) : (
             reusableData?.products.map((i) => (
-              <ProductCard
+              <ReusableProductCard
                 key={i._id}
                 productId={i._id}
                 name={i.productDetails.name||""}

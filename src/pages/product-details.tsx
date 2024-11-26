@@ -42,20 +42,26 @@ const ProductDetails = () => {
   const [createReview] = useNewReviewMutation();
   const [deleteReview] = useDeleteReviewMutation();
 
-  const decrement = () => setQuantity((prev) => prev - 1);
+  const decrement = () => {
+    if (quantity > 1) {
+      setQuantity((prev) => prev - 1);
+    } else {
+      toast.error("Quantity cannot be less than 1");
+    }
+  };
+
   const increment = () => {
-    if (data?.product?.stock === quantity)
+    if (data?.product?.stock === quantity) {
       return toast.error(`${data?.product?.stock} available only`);
+    }
     setQuantity((prev) => prev + 1);
   };
 
   const addToCartHandler = async (cartItem: CartItem) => {
-    // Check if cartItem exists and has valid stock information
     if (!cartItem || typeof cartItem.stock !== "number") {
       return toast.error("Invalid product details");
     }
-  
-    // If the product is out of stock, call the notification API
+
     if (cartItem.stock < 1) {
       try {
         const response = await fetch(`${server}/api/v1/notification/new?userId=${user?._id}`, {
@@ -65,16 +71,16 @@ const ProductDetails = () => {
           },
           body: JSON.stringify({
             productId: cartItem.productId,
-            email: user?.email, // Use user?.email directly
+            email: user?.email,
           }),
         });
-  
+
         const data = await response.json();
-  
+
         if (!response.ok) {
           return toast.error(data.message || "Failed to create notification.");
         }
-  
+
         return toast.error(
           "Out of stock! You will be notified when the product is back in stock."
         );
@@ -83,8 +89,7 @@ const ProductDetails = () => {
         return toast.error("An error occurred. Please try again.");
       }
     }
-  
-    // Add to cart if the product is in stock
+
     try {
       dispatch(addToCart(cartItem));
       toast.success("Product added to cart");
@@ -93,8 +98,7 @@ const ProductDetails = () => {
       toast.error("Failed to add product to cart. Please try again.");
     }
   };
-  
-  
+
   if (isError) return <Navigate to="/404" />;
 
   const showDialog = () => {
@@ -138,8 +142,6 @@ const ProductDetails = () => {
     setReviewSubmitLoading(false);
 
     responseToast(res, null, "");
-
-    // API call to submit review
   };
 
   const handleDeleteReview = async (reviewId: string) => {
@@ -176,31 +178,39 @@ const ProductDetails = () => {
               <em
                 style={{ display: "flex", gap: "1rem", alignItems: "center" }}
               >
-                <RatingsComponent value={data?.product?.ratings || 0} />(
-                {data?.product?.numOfReviews} reviews)
+                <RatingsComponent value={data?.product?.ratings || 0} />({
+                  data?.product?.numOfReviews
+                } reviews)
               </em>
               <h3>₹{data?.product?.price}</h3>
               <article>
-                <div>
-                  <button onClick={decrement}>-</button>
-                  <span>{quantity}</span>
-                  <button onClick={increment}>+</button>
-                </div>
-                <button
-                  onClick={() =>
-                    addToCartHandler({
-                      productId: data?.product?._id!,
-                      name: data?.product?.name!,
-                      price: data?.product?.price!,
-                      stock: data?.product?.stock!,
-                      quantity,
-                      photo: data?.product?.photos[0].url || "",
-
-                    })
-                  }
-                >
-                  Add To Cart
-                </button>
+                {data?.product?.stock! > 0 ? (
+                  <>
+                    <div>
+                      <button onClick={decrement}>-</button>
+                      <span>{quantity}</span>
+                      <button onClick={increment}>+</button>
+                    </div>
+                    <button
+                      onClick={() =>
+                        addToCartHandler({
+                          productId: data?.product?._id!,
+                          name: data?.product?.name!,
+                          price: data?.product?.price!,
+                          stock: data?.product?.stock!,
+                          quantity,
+                          photo: data?.product?.photos[0].url || "",
+                        })
+                      }
+                    >
+                      Add To Cart
+                    </button>
+                  </>
+                ) : (
+                  <p style={{ color: "red", fontWeight: "bold" }}>
+                    Item is out of stock
+                  </p>
+                )}
               </article>
 
               <p>{data?.product?.description}</p>
@@ -297,43 +307,30 @@ const ProductLoader = () => {
       style={{
         display: "flex",
         gap: "2rem",
-        border: "1px solid #f1f1f1",
-        height: "80vh",
+        border: "1px solid #ddd",
+        padding: "2rem",
       }}
     >
-      <section style={{ width: "100%", height: "100%" }}>
-        <Skeleton
-          width="100%"
-          containerHeight="100%"
-          height="100%"
-          length={1}
-        />
-      </section>
-      <section
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          gap: "4rem",
-          padding: "2rem",
-        }}
-      >
-        <Skeleton width="40%" length={3} />
-        <Skeleton width="50%" length={4} />
-        <Skeleton width="100%" length={2} />
-        <Skeleton width="100%" length={10} />
-      </section>
+      <Skeleton width="50%" length={6} />
+      <Skeleton width="50%" length={6} />
     </div>
   );
 };
 
-const NextButton: CarouselButtonType = ({ onClick }) => (
-  <button onClick={onClick} className="carousel-btn">
+const NextButton:CarouselButtonType = ({ onClick }) => (
+  <button
+    style={{ position: "absolute", top: "50%", right: 0 }}
+    onClick={onClick}
+  >
     <FaArrowRightLong />
   </button>
 );
-const PrevButton: CarouselButtonType = ({ onClick }) => (
-  <button onClick={onClick} className="carousel-btn">
+
+const PrevButton:CarouselButtonType = ({ onClick }) => (
+  <button
+    style={{ position: "absolute", top: "50%", left: 0 }}
+    onClick={onClick}
+  >
     <FaArrowLeftLong />
   </button>
 );

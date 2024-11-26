@@ -49,6 +49,8 @@ const Coupon = lazy(() => import("./pages/admin/apps/coupon"));
 const Stopwatch = lazy(() => import("./pages/admin/apps/stopwatch"));
 const Toss = lazy(() => import("./pages/admin/apps/toss"));
 const NewProduct = lazy(() => import("./pages/admin/management/newproduct"));
+const ReusableProductDetails = lazy(() => import("./pages/reusableProductDetails"));
+const UserReusableProducts = lazy(() => import("./pages/userReusableProducts"));
 const ProductManagement = lazy(
   () => import("./pages/admin/management/productmanagement")
 );
@@ -90,6 +92,7 @@ const App = () => {
           <Route path="/reusable-search" element={<ReusableSearch />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/reusable/:id" element={<ReusableProductDetails />} />
           {/* Not logged In Route */}
           <Route
             path="/login"
@@ -110,6 +113,7 @@ const App = () => {
             <Route path="/user/queries" element={<UserQueries />} />
             <Route path="/query/new" element={<NewQuery/>} />
             <Route path="/query/:id" element={<Querymanagement/>} />
+            <Route path="/user/products" element={<UserReusableProducts />} />
           </Route>
           {/* Admin Routes */}
           <Route
