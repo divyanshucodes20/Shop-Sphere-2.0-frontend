@@ -7,6 +7,7 @@ import { Skeleton } from "../components/loader";
 import { useMyOrdersQuery } from "../redux/api/orderAPI";
 import { RootState } from "../redux/store";
 import { CustomError } from "../types/api-types";
+import { Link } from "react-router-dom";
 
 type DataType = {
   _id: string;
@@ -14,6 +15,7 @@ type DataType = {
   quantity: number;
   discount: number;
   status: ReactElement;
+  action: ReactElement;
 };
 
 const column: Column<DataType>[] = [
@@ -36,6 +38,10 @@ const column: Column<DataType>[] = [
   {
     Header: "Status",
     accessor: "status",
+  },
+  {
+    Header: "Action",
+    accessor: "action",
   },
 ];
 
@@ -71,6 +77,11 @@ const Orders = () => {
             >
               {i.status}
             </span>
+          ),
+          action: (
+            <Link to={`/order/${i._id}`}>
+              <button className="btn">View</button>
+            </Link>
           ),
         }))
       );

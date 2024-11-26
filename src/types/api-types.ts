@@ -12,7 +12,8 @@ import {
   Review,
   ShippingInfo,
   Stats,
-  User
+  User,
+  UserPayment
 } from "./types";
 
 export type CustomError = {
@@ -218,3 +219,16 @@ export type DeleteReusableProductRequest = {
   userId: string;
   id: string;
 };
+
+export type AllUserPendingPaymentsResponse = {
+  success: boolean;
+  payments: UserPayment[];
+}
+export type PaymentDetailsResponse={
+  success:boolean;
+  payment:UserPayment;
+}
+export type PaymentDetailsRequest={
+  userId:string;
+  paymentId:string;
+}

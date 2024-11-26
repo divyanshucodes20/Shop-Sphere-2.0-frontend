@@ -26,6 +26,7 @@ const NewQuery = lazy(() => import("./pages/newquery"));
 const Querymanagement = lazy(() => import("./pages/queryManagement"));
 const NotFound = lazy(() => import("./pages/not-found"));
 const Checkout = lazy(() => import("./pages/checkout"));
+const UserPayments = lazy(() => import("./pages/userPayments"));
 
 // Admin Routes Importing
 const Dashboard = lazy(() => import("./pages/admin/dashboard"));
@@ -50,6 +51,7 @@ const Stopwatch = lazy(() => import("./pages/admin/apps/stopwatch"));
 const Toss = lazy(() => import("./pages/admin/apps/toss"));
 const NewProduct = lazy(() => import("./pages/admin/management/newproduct"));
 const ReusableProductDetails = lazy(() => import("./pages/reusableProductDetails"));
+const AdminPayments = lazy(() => import("./pages/admin/adminPayments"));
 const UserReusableProducts = lazy(() => import("./pages/userReusableProducts"));
 const ProductManagement = lazy(
   () => import("./pages/admin/management/productmanagement")
@@ -59,6 +61,9 @@ const TransactionManagement = lazy(
 );
 const DiscountManagement = lazy(
   () => import("./pages/admin/management/discountmanagement")
+);
+const PaymentManagement = lazy(
+  () => import("./pages/admin/management/paymentmanagement")
 );
 
 const NewDiscount = lazy(() => import("./pages/admin/management/newdiscount"));
@@ -114,6 +119,7 @@ const App = () => {
             <Route path="/query/new" element={<NewQuery/>} />
             <Route path="/query/:id" element={<Querymanagement/>} />
             <Route path="/user/products" element={<UserReusableProducts />} />
+            <Route path="/user/payments" element={<UserPayments />} />
           </Route>
           {/* Admin Routes */}
           <Route
@@ -135,6 +141,7 @@ const App = () => {
             <Route path="/admin/pickups" element={<AdminPickups/>} />
             <Route path="/admin/pending-reusable" element={<AdminPendingReusable/>} />
             <Route path="/admin/reusable" element={<AdminReusableProducts/>} />
+            <Route path="/admin/payments" element={<AdminPayments/>} />
             
             {/* Charts */}
             <Route path="/admin/chart/bar" element={<Barcharts />} />
@@ -161,7 +168,7 @@ const App = () => {
               element={<ReusableProductManagement />}
             />
             <Route path="/admin/discount/new" element={<NewDiscount />} />
-
+            <Route path="/admin/payments/:id" element={<PaymentManagement />} />
             <Route
               path="/admin/discount/:id"
               element={<DiscountManagement />}

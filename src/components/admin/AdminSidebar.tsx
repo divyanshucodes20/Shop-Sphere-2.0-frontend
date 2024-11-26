@@ -9,7 +9,7 @@ import {
   FaStopwatch,
   FaTruckPickup,
 } from "react-icons/fa";
-import { HiMenuAlt4 } from "react-icons/hi";
+import { HiCurrencyRupee, HiMenuAlt4 } from "react-icons/hi";
 import { IoIosPeople } from "react-icons/io";
 import {
   RiCoupon3Fill,
@@ -140,6 +140,12 @@ const DivOne = ({ location }: { location: Location }) => (
         url="/admin/reusable"
         text="Reusable Products" 
         Icon={FaRecycle}
+        location={location}
+      />
+      <Li
+        url="/admin/payments"
+        text="Payments" 
+        Icon={HiCurrencyRupee}
         location={location}
       />
     </ul>

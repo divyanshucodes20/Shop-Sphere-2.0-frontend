@@ -2,21 +2,19 @@ import { ReactElement, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { Column } from "react-table";
-import TableHOC from "../components/admin/TableHOC";
-import { Skeleton } from "../components/loader";
-import { RootState } from "../redux/store";
-import { CustomError } from "../types/api-types";
-import {
-  useGetUserAllPaymentsQuery,
-  useGetUserCompletedPaymentsQuery,
-  useGetUserPendingPaymentsQuery,
-} from "../redux/api/userPaymentAPI";
+import { RootState } from "../../redux/store";
+import { useGetAdminAllPaymentsQuery, useGetAdminCompletedPaymentsQuery, useGetAdminPendingPaymentsQuery } from "../../redux/api/userPaymentAPI";
+import { Link } from "react-router-dom";
+import { CustomError } from "../../types/api-types";
+import TableHOC from "../../components/admin/TableHOC";
+import { Skeleton } from "../../components/loader";
 
 type DataType = {
   _id: string;
   amount: number;
   reusableProductId: string;
   status: ReactElement;
+  action: ReactElement;
 };
 
 const column: Column<DataType>[] = [
@@ -36,14 +34,18 @@ const column: Column<DataType>[] = [
     Header: "Status",
     accessor: "status",
   },
+  {
+    Header: "Action",
+    accessor: "action",
+  }
 ];
 
-const userPayments = () => {
+const AdminPayments = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
 
-  const { isLoading: isAllLoading, data: allData, isError: isAllError, error: allError } = useGetUserAllPaymentsQuery(user?._id!);
-  const { isLoading: isPendingLoading, data: pendingData } = useGetUserPendingPaymentsQuery(user?._id!);
-  const { isLoading: isCompletedLoading, data: completedData } = useGetUserCompletedPaymentsQuery(user?._id!);
+  const { isLoading: isAllLoading, data: allData, isError: isAllError, error: allError } = useGetAdminAllPaymentsQuery(user?._id!);
+  const { isLoading: isPendingLoading, data: pendingData } = useGetAdminPendingPaymentsQuery(user?._id!);
+  const { isLoading: isCompletedLoading, data: completedData } = useGetAdminCompletedPaymentsQuery(user?._id!);
 
   const [rows, setRows] = useState<DataType[]>([]);
   const [filter, setFilter] = useState<string>("All");
@@ -53,33 +55,23 @@ const userPayments = () => {
   };
 
   useEffect(() => {
-    let data = allData;
-
-    if (filter === "Pending") {
-      data = pendingData;
-    } else if (filter === "Completed") {
-      data = completedData;
-    }
-
-    if (data) {
+    const filteredData =
+      filter === "Pending" ? pendingData : 
+      filter === "Completed" ? completedData : 
+      allData;
+  
+    if (filteredData) {
       setRows(
-        data.payments.map((i) => ({
+        filteredData.payments.map((i) => ({
           _id: i._id,
           amount: i.amount,
           reusableProductId: i.reusableProductId,
           status: (
-            <span
-              className={
-                i.paymentStatus === "pending"
-                  ? "red"
-                  : i.paymentStatus === "completed"
-                  ? "green"
-                  : "purple"
-              }
-            >
+            <span className={i.paymentStatus === "pending" ? "red" : "green"}>
               {i.paymentStatus}
             </span>
           ),
+          action: <Link to={`/admin/payments/${i._id}`}>Manage</Link>,
         }))
       );
     }
@@ -99,7 +91,7 @@ const userPayments = () => {
   )();
   return (
     <div className="container">
-      <h1>My Payments</h1>
+      <h1>All Payments</h1>
       <div style={{ marginBottom: "1rem" }}>
         <select
           value={filter}
@@ -126,4 +118,4 @@ const userPayments = () => {
   );
 };
 
-export default userPayments;
+export default AdminPayments;

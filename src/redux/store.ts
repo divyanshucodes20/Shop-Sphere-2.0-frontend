@@ -8,6 +8,7 @@ import { dashboardApi } from "./api/dashboardAPI";
 import { notificationAPI } from "./api/notificationAPI";
 import { queryAPI } from "./api/queryAPI";
 import { reusableAPI } from "./api/reusableAPI";
+import { userPaymentAPI } from "./api/userPaymentAPI";
 
 export const server = import.meta.env.VITE_SERVER;
 
@@ -20,6 +21,7 @@ export const store = configureStore({
     [notificationAPI.reducerPath]: notificationAPI.reducer,
     [queryAPI.reducerPath]:queryAPI.reducer,
     [reusableAPI.reducerPath]:reusableAPI.reducer,
+    [userPaymentAPI.reducerPath]:userPaymentAPI.reducer,
     [userReducer.name]: userReducer.reducer,
     [cartReducer.name]: cartReducer.reducer,
   },
@@ -32,6 +34,7 @@ export const store = configureStore({
     notificationAPI.middleware,
     queryAPI.middleware,
     reusableAPI.middleware,
+    userPaymentAPI.middleware,
   ],
 });
 

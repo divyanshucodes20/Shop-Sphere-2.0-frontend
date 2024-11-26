@@ -195,3 +195,11 @@ export type ReusableProduct={
   totalPrice:number;
   _id: string;
 }
+
+export type UserPayment={
+  _id:string;
+  userId:string;
+  reusableProductId:string;
+  amount:number;
+  paymentStatus:"pending"|"completed";
+}
