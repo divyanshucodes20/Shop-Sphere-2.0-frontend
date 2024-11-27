@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { server } from "../redux/store";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +11,9 @@ const ContactUs = () => {
     message: "",
   });
 
+ const navigate=useNavigate();
+
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -15,7 +21,7 @@ const ContactUs = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(`${server}/api/v1/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -23,7 +29,8 @@ const ContactUs = () => {
 
       const result = await response.json();
       if (result.success) {
-        alert("Message sent successfully!");
+        toast.success("Message sent successfully!");
+        navigate("/thankyou");
       } else {
         alert("Failed to send the message. Try again later.");
       }

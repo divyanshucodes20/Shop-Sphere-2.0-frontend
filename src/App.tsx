@@ -14,6 +14,7 @@ import Footer from "./components/footer";
 
 const Home = lazy(() => import("./pages/home"));
 const About = lazy(() => import("./pages/about"));
+const ThankYouPage = lazy(() => import("./pages/thankyou"));
 const ContactUS = lazy(() => import("./pages/contact"));
 const Search = lazy(() => import("./pages/search"));
 const ReusableSearch = lazy(() => import("./pages/reusableSearch"));
@@ -102,6 +103,7 @@ const App = () => {
           <Route path="/reusable/:id" element={<ReusableProductDetails />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<ContactUS />} />
+          <Route path="/thankyou" element={<ThankYouPage />} />
           {/* Not logged In Route */}
           <Route
             path="/login"

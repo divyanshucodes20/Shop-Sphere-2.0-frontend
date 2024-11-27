@@ -79,7 +79,7 @@ const PendingReusableManagement = () => {
     formData.append("queryId", _id!);
   
     const res = await createReusableProduct({ formData, id: user?._id! });
-    responseToast(res, navigate, "/admin/reusable-products");
+    responseToast(res, navigate, "/admin/reusable");
   };
   
 
