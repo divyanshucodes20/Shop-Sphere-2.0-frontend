@@ -98,8 +98,9 @@ const clients = [
 ];
 
 const banners = [
+  "https://res.cloudinary.com/dmwfyn2op/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1732734495/fotor-ai-2024112803637_f7eyko.jpg",
   "https://res.cloudinary.com/dj5q966nb/image/upload/v1719253445/rmbjpuzctjdbtt8hewaz.png",
-  "https://res.cloudinary.com/dj5q966nb/image/upload/v1719253433/ticeufjqvf6napjhdiee.png",
+  "https://res.cloudinary.com/dj5q966nb/image/upload/v1719253433/ticeufjqvf6napjhdiee.png"
 ];
 const categories = [
   "Electronics",
