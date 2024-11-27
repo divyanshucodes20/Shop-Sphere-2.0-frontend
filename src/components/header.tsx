@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 import { User } from "../types/types";
+import { MdAddCall, MdContactSupport } from "react-icons/md";
 
 const logo = "https://res.cloudinary.com/dmwfyn2op/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1732248470/Screenshot_2024-11-22_093737_ujy0tc.png";
 
@@ -53,6 +54,12 @@ const Header = ({ user }: PropsType) => {
       </Link>
       <Link onClick={() => setIsOpen(false)} to={"/cart"}>
         <FaShoppingBag />
+      </Link>
+      <Link onClick={() => setIsOpen(false)} to={"/about"}>
+        <MdContactSupport />
+      </Link>
+      <Link onClick={() => setIsOpen(false)} to={"/contact"}>
+        <MdAddCall/>
       </Link>
 
       {/* User Actions */}
