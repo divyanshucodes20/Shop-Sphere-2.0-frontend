@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 import { User } from "../types/types";
 import { MdAddCall, MdContactSupport } from "react-icons/md";
+import { IoIosHome } from "react-icons/io";
 
 const logo = "https://res.cloudinary.com/dmwfyn2op/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1732248470/Screenshot_2024-11-22_093737_ujy0tc.png";
 
@@ -44,6 +45,9 @@ const Header = ({ user }: PropsType) => {
           <span className="title">ShopSphere</span>
         </Link>
       </div>
+      <Link className="mobile-home" onClick={() => setIsOpen(false)} to={"/"}>
+        <IoIosHome/>
+      </Link>
 
       {/* Navigation Links */}
       <Link onClick={() => setIsOpen(false)} to={"/search"}>

@@ -227,25 +227,25 @@ const Home = () => {
           />
         </div>
         <b>Read About Us Before Shopping or selling </b>
-   <a
-    href="/about"
-    style={{
-      display: "inline-block",
-      padding: "0.8rem 1rem",
-      fontSize: "1rem",
-      color: "white",
-      backgroundColor: "#2d89ff",
-      textDecoration: "none",
-      borderRadius: "5px",
-      cursor: "pointer",
-      marginTop: "1rem",
-      width:"30%",
-    }}
-    onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#0056d6")}
-    onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#2d89ff")}
-  >
-    About Us
-  </a>
+        <Link
+  to="/about"
+  style={{
+    display: "inline-block",
+    padding: "0.8rem 1rem",
+    fontSize: "1rem",
+    color: "white",
+    backgroundColor: "#2d89ff",
+    textDecoration: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    marginTop: "1rem",
+    width:"30%",
+  }}
+  onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#0056d6")}
+  onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#2d89ff")}
+>
+  About Us
+</Link>
         <h1>
           Latest Products
           <Link to="/search" className="findmore">

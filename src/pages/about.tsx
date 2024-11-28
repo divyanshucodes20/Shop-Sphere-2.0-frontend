@@ -1,4 +1,14 @@
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { UserReducerInitialState } from "../types/reducer-types";
+
 const About = () => {
+
+  const {user}=useSelector(
+    (state:{userReducer:UserReducerInitialState})=>state.userReducer
+  )
+
+
   return (
     <div style={{ padding: "2rem", fontFamily: "Arial, sans-serif", color: "#333" }}>
       {/* Header Section */}
@@ -134,8 +144,8 @@ const About = () => {
     Have questions or need assistance? Reach out to us anytime, and we’ll make sure
     you have the best experience with ShopSphere.
   </p>
-  <a
-    href="/contact"
+  <Link
+    to="/contact"
     style={{
       display: "inline-block",
       padding: "0.8rem 1.5rem",
@@ -151,34 +161,56 @@ const About = () => {
     onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#2d89ff")}
   >
     Contact Us
-  </a>
+  </Link>
 
   <h2 style={{ fontSize: "1.8rem", color: "#222", marginTop: "2rem" }}>
-    List Your Product with Us
-  </h2>
-  <p>
-    Submit a query, and we'll review it. After approval, we’ll pick up your item,
-    perform the necessary reviews, and list it on our platform. Start your journey
-    with us today!
-  </p>
-  <a
-    href="/user/queries" 
-    style={{
-      display: "inline-block",
-      padding: "0.8rem 1.5rem",
-      fontSize: "1rem",
-      color: "white",
-      backgroundColor: "#ff5722",
-      textDecoration: "none",
-      borderRadius: "5px",
-      cursor: "pointer",
-      marginTop: "1rem",
-    }}
-    onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#e64a19")}
-    onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#ff5722")}
-  >
-    Get Started
-  </a>
+        List Your Product with Us
+      </h2>
+      <p>
+        Submit a query, and we'll review it. After approval, we’ll pick up your item,
+        perform the necessary reviews, and list it on our platform. Start your journey
+        with us today!
+      </p>
+      {user ? (
+        <Link
+          to="/user/queries"
+          style={{
+            display: "inline-block",
+            padding: "0.8rem 1.5rem",
+            fontSize: "1rem",
+            color: "white",
+            backgroundColor: "#ff5722",
+            textDecoration: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            marginTop: "1rem",
+          }}
+          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#e64a19")}
+          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#ff5722")}
+        >
+          Get Started
+        </Link>
+      ) : (
+        <Link
+          to="/login"
+          style={{
+            display: "inline-block",
+            padding: "0.8rem 1.5rem",
+            fontSize: "1rem",
+            color: "white",
+            backgroundColor: "#ff5722",
+            textDecoration: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            marginTop: "1rem",
+          }}
+          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#e64a19")}
+          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#ff5722")}
+        >
+          Login to Get Started
+        </Link>
+      )}
+  
 </section>
 
     </div>

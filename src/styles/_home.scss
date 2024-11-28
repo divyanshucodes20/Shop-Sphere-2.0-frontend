@@ -302,6 +302,11 @@
       font-weight: 700;
     }
   }
+  .mobile-home {
+    display: none; /* Hidden by default */
+    font-size: 1.5rem;
+    color: #000;
+  }
 
   .login-btn,
   .logout-btn {
@@ -399,15 +404,10 @@
 
   @media (max-width: 480px) {
     .logo-container {
-      left: 2%;
-      .logo {
-        width: 25px;
-        height: 25px;
-      }
-
-      .title {
-        font-size: 1rem;
-      }
+      display: none; /* Hide logo on mobile */
+    }
+    .mobile-home {
+      display: inline-block; /* Show home icon on mobile */
     }
 
     .login-btn,
