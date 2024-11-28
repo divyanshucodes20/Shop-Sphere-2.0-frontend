@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AdminSidebar from "../../../components/admin/AdminSidebar";
 import { Skeleton } from "../../../components/loader";
+import { useGetPaymentByIdQuery, useProcessPaymentMutation } from "../../../redux/api/userPaymentAPI";
 import { RootState } from "../../../redux/store";
 import { UserPayment } from "../../../types/types";
-import { responseToast} from "../../../utils/features";
-import { useGetPaymentByIdQuery, useProcessPaymentMutation } from "../../../redux/api/userPaymentAPI";
+import { responseToast } from "../../../utils/features";
 
 const defaultData: UserPayment = {
     userId:"",
@@ -21,7 +21,7 @@ const PaymentManagement = () => {
   const params = useParams();
   const navigate = useNavigate();
 
-  const { isLoading, data, isError } = useGetPaymentByIdQuery({userId:user?._id!,paymentId:params.id!});
+  const { isLoading, data} = useGetPaymentByIdQuery({userId:user?._id!,paymentId:params.id!});
 
   const {
     userId,
