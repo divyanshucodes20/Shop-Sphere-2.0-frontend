@@ -11,6 +11,7 @@ import {
   useGetUserCompletedPaymentsQuery,
   useGetUserPendingPaymentsQuery,
 } from "../redux/api/userPaymentAPI";
+import { useNavigate } from "react-router-dom";
 
 type DataType = {
   _id: string;
@@ -40,6 +41,16 @@ const column: Column<DataType>[] = [
 
 const userPayments = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
+
+
+  const navigate=useNavigate();
+
+  if(user?.role !== "user"){
+    toast.error("You are not authorized to view this page");
+    navigate("/");
+  }
+
+
 
   const { isLoading: isAllLoading, data: allData, isError: isAllError, error: allError } = useGetUserAllPaymentsQuery(user?._id!);
   const { isLoading: isPendingLoading, data: pendingData } = useGetUserPendingPaymentsQuery(user?._id!);

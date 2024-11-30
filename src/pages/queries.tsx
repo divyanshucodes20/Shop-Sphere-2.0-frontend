@@ -2,7 +2,7 @@ import { ReactElement, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaPlus } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Column } from "react-table";
 import { RootState } from "../redux/store";
 import { useGetUserQueriesQuery } from "../redux/api/queryAPI";
@@ -53,6 +53,15 @@ const columns: Column<DataType>[] = [
 
 const UserQueries = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
+
+
+const navigate=useNavigate();
+
+
+  if(user?.role !== "user"){
+    toast.error("You are not authorized to view this page");
+    navigate("/");
+  }
 
   const { isLoading, isError, error, data } = useGetUserQueriesQuery(user?._id!);
 

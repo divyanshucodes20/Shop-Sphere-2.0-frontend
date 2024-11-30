@@ -1,7 +1,7 @@
 import { ReactElement, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Column } from "react-table";
 import TableHOC from "../components/admin/TableHOC";
 import { Skeleton } from "../components/loader";
@@ -47,6 +47,17 @@ const columns: Column<DataType>[] = [
 
 const UserReusableProducts = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
+
+
+const navigate=useNavigate();
+
+
+  if(user?.role !== "user"){
+    toast.error("You are not authorized to view this page");
+    navigate("/");
+  }
+
+
 
   const { isLoading, isError, error, data } = useGetUserReusableProductsQuery(user?._id!);
 

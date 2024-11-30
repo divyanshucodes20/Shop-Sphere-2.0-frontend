@@ -7,12 +7,18 @@ import { Skeleton } from "../components/loader";
 import { useDeleteUserQueryMutation, useGetQueryByIdQuery, useUpdateUserQueryMutation } from "../redux/api/queryAPI";
 import { RootState } from "../redux/store";
 import { responseToast, transformImage } from "../utils/features";
+import toast from "react-hot-toast";
 
 const Querymanagement = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
 
   const params = useParams();
   const navigate = useNavigate();
+
+  if(user?.role !== "user"){
+    toast.error("You are not authorized to view this page");
+    navigate("/");
+  }
 
   const { data, isLoading, isError } = useGetQueryByIdQuery(params.id!);
 

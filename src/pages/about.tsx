@@ -172,44 +172,65 @@ const About = () => {
         with us today!
       </p>
       {user ? (
-        <Link
-          to="/user/queries"
-          style={{
-            display: "inline-block",
-            padding: "0.8rem 1.5rem",
-            fontSize: "1rem",
-            color: "white",
-            backgroundColor: "#ff5722",
-            textDecoration: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-            marginTop: "1rem",
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#e64a19")}
-          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#ff5722")}
-        >
-          Get Started
-        </Link>
-      ) : (
-        <Link
-          to="/login"
-          style={{
-            display: "inline-block",
-            padding: "0.8rem 1.5rem",
-            fontSize: "1rem",
-            color: "white",
-            backgroundColor: "#ff5722",
-            textDecoration: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-            marginTop: "1rem",
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#e64a19")}
-          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#ff5722")}
-        >
-          Login to Get Started
-        </Link>
-      )}
+  user.role === 'admin' ? (
+    <Link
+      to="/admin/dashboard"
+      style={{
+        display: "inline-block",
+        padding: "0.8rem 1.5rem",
+        fontSize: "1rem",
+        color: "white",
+        backgroundColor: "#ff5722",
+        textDecoration: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+        marginTop: "1rem",
+      }}
+      onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#e64a19")}
+      onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#ff5722")}
+    >
+      Go to Admin Dashboard
+    </Link>
+  ) : (
+    <Link
+      to="/user/queries"
+      style={{
+        display: "inline-block",
+        padding: "0.8rem 1.5rem",
+        fontSize: "1rem",
+        color: "white",
+        backgroundColor: "#ff5722",
+        textDecoration: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+        marginTop: "1rem",
+      }}
+      onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#e64a19")}
+      onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#ff5722")}
+    >
+      Get Started
+    </Link>
+  )
+) : (
+  <Link
+    to="/login"
+    style={{
+      display: "inline-block",
+      padding: "0.8rem 1.5rem",
+      fontSize: "1rem",
+      color: "white",
+      backgroundColor: "#ff5722",
+      textDecoration: "none",
+      borderRadius: "5px",
+      cursor: "pointer",
+      marginTop: "1rem",
+    }}
+    onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#e64a19")}
+    onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#ff5722")}
+  >
+    Login to Get Started
+  </Link>
+)}
   
 </section>
 

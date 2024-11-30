@@ -5,9 +5,17 @@ import { useNavigate } from "react-router-dom";
 import { RootState } from "../redux/store";
 import { useNewQueryMutation } from "../redux/api/queryAPI";
 import { responseToast } from "../utils/features";
+import toast from "react-hot-toast";
 
 const NewQuery = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
+
+  const navigate = useNavigate();
+
+  if(user?.role !== "user"){
+    toast.error("You are not authorized to view this page");
+    navigate("/");
+  }
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -21,7 +29,6 @@ const NewQuery = () => {
   const [pickupPostalCode, setPickupPostalCode] = useState<string>("");
 
   const [newQuery] = useNewQueryMutation();
-  const navigate = useNavigate();
 
   const photos = useFileHandler("multiple", 10, 5);
 
