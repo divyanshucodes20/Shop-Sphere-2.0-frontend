@@ -33,10 +33,7 @@ const About = () => {
           Who We Are
         </h2>
         <p>
-          ShopSphere is a dynamic e-commerce platform designed to provide a seamless
-          experience for buying, selling, and reselling products. We empower users with
-          tools to track their activities, manage their items, and enjoy a comprehensive
-          shopping and selling experience.
+        ShopSphere is a dynamic digital marketplace designed to revolutionize the way users engage with products. It offers a seamless platform for discovering, trading, and reselling items, empowering users to take full control of their activities. With intuitive tools to track transactions, manage possessions, and enhance their experience, ShopSphere ensures a holistic and interactive journey for buyers and sellers alike.
         </p>
       </section>
 
