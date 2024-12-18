@@ -54,6 +54,7 @@ const Productmanagement = () => {
       if (nameUpdate) formData.set("name", nameUpdate);
       if (descriptionUpdate) formData.set("description", descriptionUpdate);
       if (priceUpdate) formData.set("price", priceUpdate.toString());
+      if(stockUpdate<0) return alert("Stock can't be negative");
       if (stockUpdate !== undefined)
         formData.set("stock", stockUpdate.toString());
 
