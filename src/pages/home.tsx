@@ -289,7 +289,7 @@ const Home = () => {
         </main>
         <h1>
           Latest Reusable Products
-          <Link to="/search-reusable" className="findmore">
+          <Link to="/reusable-search" className="findmore">
             More
           </Link>
         </h1>
